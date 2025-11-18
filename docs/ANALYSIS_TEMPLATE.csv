@@ -1,0 +1,7 @@
+response_id,variant,trust_primary,share_willingness,signup_likelihood,data_control,data_risk,menstruate_yn,femtech_use,privacy_concern_1to7,political_orientation,age_range,realism_1to5,feedback_text,notes
+1,A,4,2,5,3,4,Yes,Yes,5,Center-left,25-34,3,"Privacy isn't clearly explained",target_user
+2,B,6,4,7,5,2,Yes,No,6,Left,25-34,4,"The toggle made me feel better",target_user
+3,A,3,2,4,2,5,Yes,Yes,6,Center,35-44,2,"Worried about data misuse",target_user
+4,B,7,5,8,5,1,Yes,Yes,7,Left,18-24,4,"Clear control made a difference",target_user
+5,C,4,2,5,3,4,Yes,No,5,Center,25-34,3,"Privacy messaging doesn't reassure me",target_user
+,,,,,,,,,,,,,

@@ -1,0 +1,267 @@
+{
+  "survey_title": "FlowFit App Concept - User Feedback",
+  "survey_version": "1.0",
+  "estimated_duration_minutes": 5,
+  "sections": [
+    {
+      "section_id": "consent",
+      "section_title": "Informed Consent & Screening",
+      "questions": [
+        {
+          "q_id": "consent_1",
+          "type": "info_text",
+          "content": "Thank you for participating in this research study. We are testing an early concept for a cycle-synced workout helper app called FlowFit. This study will take about 5 minutes. Your participation is entirely voluntary, and you may exit at any time with no penalty."
+        },
+        {
+          "q_id": "consent_2",
+          "type": "checkbox",
+          "text": "I understand that I am participating in a research study and agree to provide feedback on a prototype app. I acknowledge that no real account will be created, and my responses will be kept confidential and used for research purposes only.",
+          "required": true,
+          "validation": "Must be checked"
+        },
+        {
+          "q_id": "screening_1",
+          "type": "multiple_choice",
+          "text": "Do you currently menstruate or have menstruated within the last 12 months?",
+          "options": [
+            "Yes",
+            "No",
+            "Prefer not to say"
+          ],
+          "required": true,
+          "note": "This helps us ensure we're reaching the target user group. Responses from all users are welcome."
+        }
+      ]
+    },
+    {
+      "section_id": "prototype_intro",
+      "section_title": "Prototype Preview",
+      "questions": [
+        {
+          "q_id": "proto_intro",
+          "type": "info_text",
+          "content": "You are about to view an interactive prototype of FlowFit. Please imagine you are considering downloading and using this app. Read through the screens carefully, and respond to the survey questions that follow. There are no right or wrong answers—we're interested in your honest impressions."
+        },
+        {
+          "q_id": "proto_link",
+          "type": "link",
+          "text": "Click here to view the prototype",
+          "note": "[Link to Variant A, B, or C based on randomization]"
+        },
+        {
+          "q_id": "proto_complete",
+          "type": "info_text",
+          "content": "After you've reviewed the prototype, please answer the questions below."
+        }
+      ]
+    },
+    {
+      "section_id": "primary_dv",
+      "section_title": "Trust & Data Comfort",
+      "questions": [
+        {
+          "q_id": "trust_primary",
+          "type": "numeric_scale",
+          "text": "How much would you trust this app with your menstrual and fitness data?",
+          "scale_min": 0,
+          "scale_max": 10,
+          "scale_min_label": "Not at all",
+          "scale_max_label": "Completely",
+          "required": true,
+          "note": "[PRIMARY OUTCOME VARIABLE]"
+        }
+      ]
+    },
+    {
+      "section_id": "secondary_dv",
+      "section_title": "Data Sharing & Sign-Up Intent",
+      "questions": [
+        {
+          "q_id": "share_willingness",
+          "type": "likert_5",
+          "text": "I would be willing to share my menstrual cycle data with this app.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "required": true,
+          "note": "[SECONDARY OUTCOME: Willingness to Share]"
+        },
+        {
+          "q_id": "signup_likelihood",
+          "type": "numeric_scale",
+          "text": "If this were a real app available today, how likely are you to create an account?",
+          "scale_min": 0,
+          "scale_max": 10,
+          "scale_min_label": "Very unlikely",
+          "scale_max_label": "Very likely",
+          "required": true,
+          "note": "[SECONDARY OUTCOME: Sign-Up Intent]"
+        },
+        {
+          "q_id": "data_control",
+          "type": "likert_5",
+          "text": "I feel in control of what happens to my data in this app.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "required": true,
+          "note": "[SECONDARY OUTCOME: Perceived Control]"
+        },
+        {
+          "q_id": "data_risk",
+          "type": "likert_5",
+          "text": "I am worried this app could misuse or leak my data.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "required": true,
+          "note": "[SECONDARY OUTCOME: Perceived Risk]"
+        }
+      ]
+    },
+    {
+      "section_id": "covariates",
+      "section_title": "Background & Context",
+      "questions": [
+        {
+          "q_id": "femtech_use",
+          "type": "multiple_choice",
+          "text": "Do you currently use any cycle, fitness, or health tracking apps? (e.g., Flo, Clue, Apple Health, Fitbit, Oura, Strava)",
+          "options": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "required": false,
+          "follow_up": {
+            "trigger": "Yes",
+            "q_id": "femtech_list",
+            "type": "open_text",
+            "text": "Which apps do you use? (Please list)"
+          }
+        },
+        {
+          "q_id": "privacy_concern",
+          "type": "likert_7",
+          "text": "In general, how concerned are you about data privacy online?",
+          "options": [
+            "Not concerned at all",
+            "Slightly concerned",
+            "Somewhat concerned",
+            "Neutral",
+            "Moderately concerned",
+            "Very concerned",
+            "Extremely concerned"
+          ],
+          "required": true,
+          "note": "[COVARIATE: General Privacy Concern]"
+        },
+        {
+          "q_id": "political_orientation",
+          "type": "multiple_choice",
+          "text": "If comfortable sharing: How would you describe your general political orientation?",
+          "options": [
+            "Left / Progressive",
+            "Center-left",
+            "Center",
+            "Center-right",
+            "Right / Conservative",
+            "Prefer not to say"
+          ],
+          "required": false,
+          "note": "[OPTIONAL COVARIATE: Exploratory context]"
+        }
+      ]
+    },
+    {
+      "section_id": "feedback",
+      "section_title": "Open Feedback",
+      "questions": [
+        {
+          "q_id": "prototype_realism",
+          "type": "likert_5",
+          "text": "How realistic did this prototype feel as an actual app you might use?",
+          "options": [
+            "Not realistic at all",
+            "Slightly realistic",
+            "Somewhat realistic",
+            "Very realistic",
+            "Extremely realistic"
+          ],
+          "required": false
+        },
+        {
+          "q_id": "feedback_open",
+          "type": "open_text",
+          "text": "Any final thoughts or feedback on the app concept?",
+          "required": false,
+          "placeholder": "Tell us what you think..."
+        }
+      ]
+    },
+    {
+      "section_id": "demographics",
+      "section_title": "Demographics (Optional)",
+      "questions": [
+        {
+          "q_id": "age_range",
+          "type": "multiple_choice",
+          "text": "Age range (optional):",
+          "options": [
+            "18–24",
+            "25–34",
+            "35–44",
+            "45–54",
+            "55+",
+            "Prefer not to say"
+          ],
+          "required": false
+        },
+        {
+          "q_id": "gender_identity",
+          "type": "open_text",
+          "text": "How would you describe your gender identity? (optional)",
+          "required": false,
+          "placeholder": "e.g., Woman, Non-binary, Other..."
+        },
+        {
+          "q_id": "education",
+          "type": "multiple_choice",
+          "text": "Highest level of education completed (optional):",
+          "options": [
+            "High school or less",
+            "Some college",
+            "Bachelor's degree",
+            "Master's degree",
+            "PhD or professional degree",
+            "Prefer not to say"
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "section_id": "closing",
+      "section_title": "Thank You",
+      "questions": [
+        {
+          "q_id": "thank_you",
+          "type": "info_text",
+          "content": "Thank you for taking the time to provide feedback on FlowFit! Your insights are invaluable as we develop this app. If you have any questions about this study, please contact [researcher email]. If you would like to receive a summary of our findings, please reply to this message with 'INTERESTED'."
+        }
+      ]
+    }
+  ]
+}
