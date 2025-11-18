@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Lock, Zap, Info } from 'lucide-react'
 import { trackEvent } from '@/lib/experiment-tracker'
+import { PrivacyPolicyModal } from '@/components/privacy-policy-modal'
 
 type Screen = 'landing' | 'features' | 'permission'
 
@@ -11,6 +12,7 @@ export default function VariantB() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('landing')
   const [keepLocal, setKeepLocal] = useState(true)
   const [showLearnMore, setShowLearnMore] = useState(false)
+  const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -231,6 +233,17 @@ export default function VariantB() {
                 </ul>
               </div>
             )}
+
+            <button
+              onClick={() => {
+                trackEvent('button_click', 'B', 'permission', { button: 'privacy_policy' })
+                setShowPrivacyPolicy(true)
+              }}
+              className="text-primary text-xs font-medium hover:underline flex items-center gap-1 cursor-pointer mt-4"
+            >
+              <Info className="w-3 h-3" />
+              Read our Privacy Policy
+            </button>
           </div>
 
           <div className="flex gap-3">
@@ -265,5 +278,14 @@ export default function VariantB() {
     ),
   }
 
-  return screens[currentScreen]
+  return (
+    <>
+      {screens[currentScreen]}
+      <PrivacyPolicyModal 
+        isOpen={showPrivacyPolicy} 
+        onClose={() => setShowPrivacyPolicy(false)} 
+        variant="b"
+      />
+    </>
+  )
 }

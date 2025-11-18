@@ -4,11 +4,13 @@ import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Lock, Zap, Shield } from 'lucide-react'
 import { trackEvent } from '@/lib/experiment-tracker'
+import { PrivacyPolicyModal } from '@/components/privacy-policy-modal'
 
 type Screen = 'landing' | 'features' | 'permission'
 
 export default function VariantC() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('landing')
+  const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -73,7 +75,7 @@ export default function VariantC() {
               trackEvent('button_click', 'C', 'features', { button: 'back' })
               setCurrentScreen('landing')
             }}
-            className="flex items-center gap-2 text-primary hover:text-primary/80 text-sm font-medium mb-8"
+            className="flex items-center gap-2 text-primary hover:text-primary/80 text-sm font-medium mb-8 cursor-pointer"
           >
             ← Back
           </button>
@@ -130,7 +132,7 @@ export default function VariantC() {
               trackEvent('button_click', 'C', 'permission', { button: 'back' })
               setCurrentScreen('features')
             }}
-            className="flex items-center gap-2 text-primary hover:text-primary/80 text-sm font-medium mb-8"
+            className="flex items-center gap-2 text-primary hover:text-primary/80 text-sm font-medium mb-8 cursor-pointer"
           >
             ← Back
           </button>
@@ -169,7 +171,6 @@ export default function VariantC() {
           </div>
 
           <div className="bg-secondary/30 border border-secondary/50 rounded-lg p-6 mb-6">
-            {/* Privacy badge - TRUST THEATER DIFFERENCE */}
             <div className="flex items-center gap-2 mb-4 pb-4 border-b border-secondary/30">
               <Shield className="w-5 h-5 text-primary flex-shrink-0" />
               <span className="font-bold text-sm text-foreground">We Care About Your Privacy</span>
@@ -182,9 +183,15 @@ export default function VariantC() {
               We've implemented industry-leading security practices to ensure your cycle and fitness information stays safe and secure. You're in control of your data.
             </p>
 
-            <a href="#" className="text-primary text-sm font-medium hover:underline">
+            <button 
+              onClick={() => {
+                trackEvent('button_click', 'C', 'permission', { button: 'privacy_policy' })
+                setShowPrivacyPolicy(true)
+              }}
+              className="text-primary text-sm font-medium hover:underline cursor-pointer"
+            >
               Read our Privacy Policy
-            </a>
+            </button>
           </div>
 
           <div className="flex gap-3">
@@ -216,5 +223,14 @@ export default function VariantC() {
     ),
   }
 
-  return screens[currentScreen]
+  return (
+    <>
+      {screens[currentScreen]}
+      <PrivacyPolicyModal 
+        isOpen={showPrivacyPolicy} 
+        onClose={() => setShowPrivacyPolicy(false)} 
+        variant="c"
+      />
+    </>
+  )
 }

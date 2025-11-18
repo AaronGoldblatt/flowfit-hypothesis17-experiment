@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Lock, Zap } from 'lucide-react'
 import { trackEvent } from '@/lib/experiment-tracker'
+import { PrivacyPolicyModal } from '@/components/privacy-policy-modal'
 
 type Screen = 'landing' | 'features' | 'permission'
 
@@ -14,6 +15,7 @@ export default function VariantA() {
     password: '',
     cycleSynced: false,
   })
+  const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false)
 
   useEffect(() => {
     trackEvent('screen_view', 'A', currentScreen)
@@ -162,9 +164,15 @@ export default function VariantA() {
             <p className="text-sm text-foreground mb-4">
               We use your cycle and workout data to personalize training recommendations. This helps us give you the most effective program.
             </p>
-            <a href="#" className="text-primary text-sm font-medium hover:underline">
+            <button 
+              onClick={() => {
+                trackEvent('button_click', 'A', 'permission', { button: 'privacy_policy' })
+                setShowPrivacyPolicy(true)
+              }}
+              className="text-primary text-sm font-medium hover:underline cursor-pointer"
+            >
               Read our Privacy Policy
-            </a>
+            </button>
           </div>
 
           <div className="flex gap-3">
@@ -184,5 +192,14 @@ export default function VariantA() {
     ),
   }
 
-  return screens[currentScreen]
+  return (
+    <>
+      {screens[currentScreen]}
+      <PrivacyPolicyModal 
+        isOpen={showPrivacyPolicy} 
+        onClose={() => setShowPrivacyPolicy(false)} 
+        variant="a"
+      />
+    </>
+  )
 }

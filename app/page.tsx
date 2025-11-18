@@ -51,7 +51,7 @@ export default function Home() {
               <button
                 key={variant.id}
                 onClick={() => setSelectedVariant(variant.id)}
-                className={`p-6 rounded-lg border-2 transition-all text-left ${variant.color} bg-card hover:bg-secondary/5`}
+                className={`p-6 rounded-lg border-2 transition-all text-left cursor-pointer ${variant.color} bg-card hover:bg-secondary/5`}
               >
                 <h3 className="font-bold text-lg text-foreground mb-2">{variant.title}</h3>
                 <p className="text-sm text-muted-foreground">{variant.description}</p>
