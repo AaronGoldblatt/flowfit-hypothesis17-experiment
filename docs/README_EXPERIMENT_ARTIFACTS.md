@@ -148,7 +148,7 @@ This directory contains all required pilot experiment artifacts for the **"Keep 
 **How to Use:**
 
 ### **Option A: R**
-```r
+\`\`\`r
 # 1. Save exported survey CSV as data/h17_responses.csv
 # 2. Run from R console or RStudio:
 source("scripts/analyze_h17.R")
