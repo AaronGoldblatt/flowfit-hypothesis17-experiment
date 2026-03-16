@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Lock, Zap, Info } from 'lucide-react'
+import { ArrowRight, CheckCircle, Lock, Zap, Info } from 'lucide-react'
 import { trackEvent } from '@/lib/experiment-tracker'
 import { PrivacyPolicyModal } from '@/components/privacy-policy-modal'
 
-type Screen = 'landing' | 'features' | 'permission'
+type Screen = 'landing' | 'features' | 'permission' | 'thankyou'
+
+const SURVEY_URL = 'https://forms.gle/bjmRfnkbtyUjKfkR9'
 
 export default function VariantB() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('landing')
@@ -263,6 +265,7 @@ export default function VariantB() {
                   button: 'agree_continue',
                   keep_local_enabled: keepLocal,
                 })
+                setCurrentScreen('thankyou')
               }}
               className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
             >
@@ -272,6 +275,32 @@ export default function VariantB() {
 
           <p className="text-xs text-center text-muted-foreground mt-6">
             No sale of data • No sharing with third parties • Your data, your choice
+          </p>
+        </div>
+      </div>
+    ),
+
+    thankyou: (
+      <div className="min-h-screen bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center px-4">
+        <div className="max-w-lg w-full text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 mb-6">
+            <CheckCircle className="w-8 h-8 text-primary" />
+          </div>
+          <h2 className="text-3xl font-bold text-primary mb-3">You&apos;re all set!</h2>
+          <p className="text-muted-foreground mb-8">
+            Thanks for signing up for FlowFit. Before you start, please take a moment to fill out a short survey from our research team — it only takes 2–3 minutes and helps us improve the app.
+          </p>
+          <a
+            href={SURVEY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackEvent('button_click', 'B', 'thankyou', { button: 'take_survey' })}
+            className="inline-flex items-center justify-center gap-2 w-full bg-primary hover:bg-primary/90 text-primary-foreground h-12 text-base rounded-md font-medium transition-colors"
+          >
+            Take the Survey <ArrowRight className="w-4 h-4" />
+          </a>
+          <p className="text-xs text-muted-foreground mt-4">
+            Opens in a new tab
           </p>
         </div>
       </div>

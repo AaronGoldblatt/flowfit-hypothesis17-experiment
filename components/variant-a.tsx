@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Lock, Zap } from 'lucide-react'
+import { ArrowRight, CheckCircle, Lock, Zap } from 'lucide-react'
 import { trackEvent } from '@/lib/experiment-tracker'
 import { PrivacyPolicyModal } from '@/components/privacy-policy-modal'
 
-type Screen = 'landing' | 'features' | 'permission'
+type Screen = 'landing' | 'features' | 'permission' | 'thankyou'
+
+const SURVEY_URL = 'https://forms.gle/bjmRfnkbtyUjKfkR9'
 
 export default function VariantA() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('landing')
@@ -179,13 +181,45 @@ export default function VariantA() {
             <Button variant="outline" className="flex-1" onClick={() => setCurrentScreen('landing')}>
               Cancel
             </Button>
-            <Button className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground">
+            <Button
+              onClick={() => {
+                trackEvent('button_click', 'A', 'permission', { button: 'agree_continue' })
+                setCurrentScreen('thankyou')
+              }}
+              className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
+            >
               I Agree & Continue
             </Button>
           </div>
 
           <p className="text-xs text-center text-muted-foreground mt-6">
             No sale of data • No sharing with third parties
+          </p>
+        </div>
+      </div>
+    ),
+
+    thankyou: (
+      <div className="min-h-screen bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center px-4">
+        <div className="max-w-lg w-full text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 mb-6">
+            <CheckCircle className="w-8 h-8 text-primary" />
+          </div>
+          <h2 className="text-3xl font-bold text-primary mb-3">You&apos;re all set!</h2>
+          <p className="text-muted-foreground mb-8">
+            Thanks for signing up for FlowFit. Before you start, please take a moment to fill out a short survey from our research team — it only takes 2–3 minutes and helps us improve the app.
+          </p>
+          <a
+            href={SURVEY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackEvent('button_click', 'A', 'thankyou', { button: 'take_survey' })}
+            className="inline-flex items-center justify-center gap-2 w-full bg-primary hover:bg-primary/90 text-primary-foreground h-12 text-base rounded-md font-medium transition-colors"
+          >
+            Take the Survey <ArrowRight className="w-4 h-4" />
+          </a>
+          <p className="text-xs text-muted-foreground mt-4">
+            Opens in a new tab
           </p>
         </div>
       </div>
