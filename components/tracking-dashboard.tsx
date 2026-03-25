@@ -44,7 +44,7 @@ export function TrackingDashboard() {
   return (
     <div className="fixed bottom-4 right-4 z-50">
       <div className="bg-card border border-border rounded-lg shadow-lg p-4 max-w-sm">
-        <h3 className="font-bold text-foreground mb-3">H17 Tracking Data</h3>
+        <h3 className="font-bold text-foreground mb-3">Tracking Data</h3>
         <div className="flex gap-2 mb-3">
           <Button
             size="sm"

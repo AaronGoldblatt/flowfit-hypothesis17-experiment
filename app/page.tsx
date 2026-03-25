@@ -20,7 +20,7 @@ export default function Home() {
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-primary mb-2">FlowFit H17 Experiment</h1>
+            <h1 className="text-4xl font-bold text-primary mb-2">FlowFit Experiment</h1>
             <p className="text-muted-foreground">Keep My Data Local - Trust Lift A/B Test</p>
             <p className="text-sm text-muted-foreground mt-4">
               Select a variant to preview the experimental prototype
@@ -61,7 +61,7 @@ export default function Home() {
           </div>
 
           <div className="bg-card border border-border rounded-lg p-8">
-            <h2 className="text-2xl font-bold text-primary mb-4">Hypothesis (H17)</h2>
+            <h2 className="text-2xl font-bold text-primary mb-4">Hypothesis</h2>
             <p className="text-foreground mb-4">
               Including a visible "keep my data local" toggle increases reported trust in the app by ≥ 25% compared to an identical flow without that toggle.
             </p>
